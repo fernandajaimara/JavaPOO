@@ -1,1 +1,1 @@
-# JavaPOO
+# Criação de um banco para a disciplina de Programação Orientada a Objetos utilizando a linguagem Java
