@@ -1,7 +1,7 @@
 public class Data {
     int dia, mes, ano;
 
-    public Data(int d, int m, int a) {
+    Data(int d, int m, int a) {
         this.dia = d;
         this.mes = m;
         this.ano = a;
@@ -9,5 +9,9 @@ public class Data {
 
     void imprimir (){
         System.out.println(this.dia + "/" + this.mes + "/" + this.ano);
+    }
+
+    boolean maior(Data d2){
+        
     }
 }
