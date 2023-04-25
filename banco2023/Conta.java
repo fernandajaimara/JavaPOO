@@ -18,7 +18,6 @@ public class Conta {
     void depositar(double valor){
         this.saldo += valor;
     }
-
     
     /*boolean transferir(double valor, Conta destino) {
         if(this.sacar(valor)) {

@@ -28,4 +28,9 @@ public class Poupanca extends Conta{
             return false;
         }
     }
+
+    void rendimentos(double taxa) {
+        double juros = saldo * (taxa / 100);
+        saldo += juros;
+    }
 }
