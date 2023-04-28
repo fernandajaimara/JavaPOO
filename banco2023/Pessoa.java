@@ -1,8 +1,26 @@
+import java.util.Scanner;
+
 public class Pessoa {
     String nome;
     Data dataNascimento;
     char sexo;
     String cpf;
+
+    Pessoa(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Digite o nome: ");
+        this.nome = s.nextLine();
+
+        System.out.println("Digite o CPF: ");
+        this.cpf = s.nextLine();
+
+        System.out.println("Data de nascimento: ");
+        this.dataNascimento = new Data();
+
+        System.out.println("Digite o sexo: ");
+        this.sexo = s.nextLine().charAt(0);
+
+    }
 
     Pessoa(String nome, Data i, char sexo, String cpf) {
         /*Construtor da classe Pessoa */

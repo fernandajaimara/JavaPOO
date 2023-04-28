@@ -1,10 +1,19 @@
+import java.util.Scanner;
+
 public class Data {
     int dia, mes, ano;
 
-    Data(int d, int m, int a) {
-        this.dia = d;
-        this.mes = m;
-        this.ano = a;
+    Data() {
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Digite o dia: ");
+        this.dia = s.nextInt();
+
+        System.out.println("Digite o mês: ");
+        this.mes = s.nextInt();
+
+        System.out.println("Digite o ano: ");
+        this.ano = s.nextInt();
     }
 
     void imprimir (){
