@@ -1,4 +1,8 @@
-public class Poupanca extends Conta{
+public class Poupanca extends Conta{ 
+       
+    Poupanca(Gerente g){
+        super(g);
+    }
 
     Poupanca(String numero, Pessoa titular, Gerente ger, Data criacao){
         super(numero, titular, ger, criacao);

@@ -2,6 +2,17 @@ import java.util.Scanner;
 public class Gerente extends Pessoa{
     String matricula, senha;
 
+    Gerente(){
+        super();
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Digite a matricula: ");
+        this.matricula = s.nextLine();
+
+        this.senha = "123456";
+        
+    }
+
     Gerente(String nome, Data d, char sexo, String cpf, String m, String senha) {
         /*Construtor da subclasse Gerente */
         super(nome, d, sexo, cpf);

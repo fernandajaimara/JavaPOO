@@ -16,6 +16,12 @@ public class Data {
         this.ano = s.nextInt();
     }
 
+    Data(int d, int m, int a) {
+        this.dia = d;
+        this.mes = m;
+        this.ano = a;
+    }
+    
     void imprimir (){
         System.out.println(this.dia + "/" + this.mes + "/" + this.ano);
     }

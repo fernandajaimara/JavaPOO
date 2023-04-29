@@ -1,6 +1,11 @@
 public class ContaCorrente extends Conta{
     double limite;
 
+    ContaCorrente(Gerente g){
+        super(g);
+        this.limite = 200;
+    }
+    
     ContaCorrente(String numero, Pessoa titular, Gerente ger, Data criacao){
         super(numero, titular, ger, criacao);
         this.limite = 200.0;
