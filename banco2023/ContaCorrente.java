@@ -1,29 +1,54 @@
+import java.util.Scanner;
 public class ContaCorrente extends Conta{
-    double limite;
+    private double limite;
 
-    ContaCorrente(Gerente g){
+    public ContaCorrente(Gerente g){
         super(g);
         this.limite = 200;
     }
     
-    ContaCorrente(String numero, Pessoa titular, Gerente ger, Data criacao){
+    public ContaCorrente(String numero, Pessoa titular, Gerente ger, Data criacao){
         super(numero, titular, ger, criacao);
         this.limite = 200.0;
         System.out.println("Nova conta adicionada ao sistema.");
     }
 
-    double disponivel() {
+    public double getLimite(){
+        return limite;
+    }
+
+    public void setLimite(String senha, double l){
+        if (this.gerente.validarAcesso(senha)){
+            this.limite = l;
+        }
+    }
+
+    protected double disponivel() {
         return this.saldo + this.limite;
     }
 
-    void extrato() {
+    public void extrato() {
         System.out.println("EXTRATO DA CONTA-CORRENTE");
         super.extrato();
     }
     
-    void chequeEspecial(double juro) {
+    public void chequeEspecial(double juro) {
         if(this.saldo < 0) {
             this.saldo = this.saldo + (juro*this.saldo)/100;
         }
-    }    
+    }   
+    public void alterarLimite(String senha, double limite){
+        if(gerente.validarAcesso(senha)){
+            this.limite = limite;
+        }
+    }
+
+    void alterarLimite() {
+        if (gerente.validarAcesso()){
+            Scanner s = new Scanner(System.in); 
+            System.out.println("Digite o novo limite: ");
+            this.limite = s.nextDouble();
+        }
+        
+    }
 }

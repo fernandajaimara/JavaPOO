@@ -1,32 +1,42 @@
 import java.util.Scanner;
 
 public class Data {
-    int dia, mes, ano;
+    private int dia, mes, ano;
 
-    Data() {
+    public Data() {
         Scanner s = new Scanner(System.in);
 
-        System.out.println("Digite o dia: ");
+        System.out.print("Digite o dia: ");
         this.dia = s.nextInt();
 
-        System.out.println("Digite o mês: ");
+        System.out.print("Digite o mês: ");
         this.mes = s.nextInt();
 
-        System.out.println("Digite o ano: ");
+        System.out.print("Digite o ano: ");
         this.ano = s.nextInt();
     }
 
-    Data(int d, int m, int a) {
+    public int getDia(){
+        return dia;
+    }
+    public int getMes(){
+        return mes;
+    }
+    public int getAno(){
+        return ano;
+    }
+
+    public Data(int d, int m, int a) {
         this.dia = d;
         this.mes = m;
         this.ano = a;
     }
     
-    void imprimir (){
+    public void imprimir (){
         System.out.println(this.dia + "/" + this.mes + "/" + this.ano);
     }
 
-    boolean maior(Data d2) {
+    public boolean maior(Data d2) {
         if (this.ano > d2.ano) {
             return true;
         } else if (this.ano == d2.ano && this.mes > d2.mes) {

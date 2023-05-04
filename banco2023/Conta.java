@@ -1,17 +1,17 @@
 import java.util.Scanner;
 public class Conta {
-    String numero;
-    Pessoa titular;
-    Gerente ger;
-    double saldo;
-    Data criacao;
+    protected String numero;
+    protected Pessoa titular;
+    protected Gerente gerente;
+    protected double saldo;
+    protected Data criacao;
 
     /*Construtor da classe Conta */
 
-    Conta (Gerente g){
+    public Conta (Gerente g){
         Scanner s = new Scanner(System.in);
 
-        System.out.println("Digite o numero: ");
+        System.out.print("Digite o numero da Conta: ");
         this.numero = s.nextLine();
 
         System.out.println("Digite os dados do titular. ");
@@ -23,30 +23,33 @@ public class Conta {
         this.criacao = new Data();
     }
 
-    Conta(String numero, Pessoa titular, Gerente ger, Data criacao){
+    public Conta(String numero, Pessoa titular, Gerente ger, Data criacao){
         this.numero = numero;
         this.titular = titular;
-        this.ger = ger;
+        this.gerente = ger;
         this.criacao = criacao;
         this.saldo = 0;
         System.out.println("Nova conta adicionada ao sistema.");
     }
 
-    double disponivel(){
+    protected double disponivel(){
         return this.saldo;
     }
 
-    void extrato(){
+    public void extrato(){
         System.out.println("Conta: " + this.numero);
         System.out.println("Titular: " + this.titular.cpf);
         System.out.println("Saldo disponivel para saque: " + this.disponivel());
+        System.out.println("----------------------------------------------------");
     }
 
-    void depositar(double valor){
+    public void depositar(double valor){
         this.saldo += valor;
+        System.out.println("Deposito de " + valor + " realizado na conta " + this.numero + " com sucesso.");
+        System.out.println("-------------------------------------------------");
     }
 
-    boolean sacar(double valor){
+    public boolean sacar(double valor){
         if (valor <= this.disponivel()){
             this.saldo -= valor;
             System.out.println("Saque na conta " + this.numero + " realizado com sucesso. Novo saldo: " + this.saldo);
@@ -58,7 +61,7 @@ public class Conta {
         }
     }
     
-    boolean transferir(double valor, Conta destino) {
+    public boolean transferir(double valor, Conta destino) {
         if(this.sacar(valor)) {
             destino.depositar(valor);
             System.out.println("Transaferencia de "+ valor + " da conta "+ this.numero + " para a conta " + destino.numero + " foi realizado com sucesso.");

@@ -1,19 +1,19 @@
 import java.util.Scanner;
 public class Gerente extends Pessoa{
-    String matricula, senha;
+    private String matricula, senha;
 
-    Gerente(){
+    public Gerente(){
         super();
         Scanner s = new Scanner(System.in);
 
-        System.out.println("Digite a matricula: ");
+        System.out.print("Digite a matricula: ");
         this.matricula = s.nextLine();
 
         this.senha = "123456";
         
     }
 
-    Gerente(String nome, Data d, char sexo, String cpf, String m, String senha) {
+    public Gerente(String nome, Data d, char sexo, String cpf, String m, String senha) {
         /*Construtor da subclasse Gerente */
         super(nome, d, sexo, cpf);
         this.matricula = m;
@@ -21,11 +21,11 @@ public class Gerente extends Pessoa{
         System.out.println("Novo gerente criado no sistema.");
     }
 
-    boolean validarAcesso(String s){
+    public boolean validarAcesso(String s){
         return s.equals(senha);
     }
 
-    boolean validarAcesso(){
+    public boolean validarAcesso(){
         Scanner s = new Scanner(System.in);
 
         System.out.println("Digite a senha: ");
