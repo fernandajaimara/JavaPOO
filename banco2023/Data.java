@@ -1,13 +1,15 @@
 import java.util.Scanner;
 
 public class Data {
-    private int dia, mes, ano;
+    private int dia;
+    private int mes;
+    private int ano;
 
     public Data() {
         Scanner s = new Scanner(System.in);
 
         System.out.print("Digite o dia: ");
-        this.dia = s.nextInt();
+        setDia(s.nextInt());
 
         System.out.print("Digite o mês: ");
         this.mes = s.nextInt();
@@ -26,6 +28,10 @@ public class Data {
         return ano;
     }
 
+    public void setDia(int dia){
+        this.dia = dia;
+    }
+    
     public Data(int d, int m, int a) {
         this.dia = d;
         this.mes = m;

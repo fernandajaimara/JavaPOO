@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Gerente extends Pessoa{
-    private String matricula, senha;
+    String matricula;
+    String senha;
 
     public Gerente(){
         super();
