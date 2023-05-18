@@ -19,11 +19,33 @@ public class Pessoa {
 
         System.out.print("Digite o sexo: ");
         this.sexo = s.nextLine().charAt(0);
-
     }
 
-    public Pessoa(String nome, Data i, char sexo, String cpf) {
-        /*Construtor da classe Pessoa */        
+    public String getCpf(){
+        return cpf;
+    }
+
+    public void setCpf(String cpf){
+        this.cpf = cpf;
+    }
+
+    public String getNome(){
+        return nome;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+    
+    public char getSexo(){
+        return sexo;
+    }
+
+    public void setSexo(char sexo){
+        this.sexo = sexo;
+    }
+
+    /*public Pessoa(String nome, Data i, char sexo, String cpf) {        
         this.nome = nome;
         this.dataNascimento = i;
         this.sexo = sexo;
@@ -31,7 +53,6 @@ public class Pessoa {
     }
 
     public int idade(Data hoje) {
-        /*Método compara duas datas e retorna idade da pessoa*/
         int diaAtual = hoje.getDia();
         int mesAtual = hoje.getMes();
         int anoAtual = hoje.getAno();
@@ -48,7 +69,7 @@ public class Pessoa {
 
         System.out.println(nome + "tem " + idade + " anos.");
         return idade;
-    }
+    }*/
 
     
 

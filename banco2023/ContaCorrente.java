@@ -1,17 +1,17 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 public class ContaCorrente extends Conta{
     private double limite;
 
-    public ContaCorrente(Gerente g){
-        super(g);
+    public ContaCorrente(Pessoa t, Gerente g){
+        super(t, g);
         this.limite = 200;
     }
     
-    public ContaCorrente(String numero, Pessoa titular, Gerente ger, Data criacao){
+    /*public ContaCorrente(String numero, Pessoa titular, Gerente ger, Data criacao){
         super(numero, titular, ger, criacao);
         this.limite = 200.0;
         System.out.println("Nova conta adicionada ao sistema.");
-    }
+    }*/
 
     public double getLimite(){
         return limite;
@@ -32,7 +32,7 @@ public class ContaCorrente extends Conta{
         super.extrato();
     }
     
-    public void chequeEspecial(double juro) {
+    /*public void chequeEspecial(double juro) {
         if(this.saldo < 0) {
             this.saldo = this.saldo + (juro*this.saldo)/100;
         }
@@ -48,7 +48,7 @@ public class ContaCorrente extends Conta{
             Scanner s = new Scanner(System.in); 
             System.out.println("Digite o novo limite: ");
             this.limite = s.nextDouble();
+            s.close();
         }
-        
-    }
+    }*/
 }

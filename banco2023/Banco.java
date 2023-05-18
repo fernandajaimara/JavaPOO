@@ -1,44 +1,119 @@
-
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Banco{
+
+    public static int menuInicial(){
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("\n Bem vindo! Escolha uma opção.\n");
+        System.out.println("1) Cadastro");
+        System.out.println("2) Movimentação Fininceira");
+        System.out.println("0) Sair ");
+        
+        return s.nextInt();
+    }
+
+    public static void menuCadastro(ArrayList<Pessoa> p, ArrayList<Gerente> g, ArrayList<Conta> c){
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("O que deseja cadastrar?");
+        System.out.println("1) Novo cliente");
+        System.out.println("2) Novo gerente");
+        System.out.println("3) Nova conta corrente ");
+        System.out.println("4) Nova poupança");
+
+        int op = s.nextInt();
+
+        if (op == 1) p.add(new Pessoa());
+        if (op == 2) g.add(new Gerente());
+        if (op == 3){
+            Pessoa tit = escolherPessoa(p);
+            Gerente ger = escolherGerente(g); 
+            c.add(new ContaCorrente(tit, ger));
+        }
+        if (op == 4){
+            Pessoa tit = escolherPessoa(p);
+            Gerente ger = escolherGerente(g);
+            c.add(new Poupanca(tit, ger));
+        }
+
+    }
+
+    public static Pessoa escolherPessoa(ArrayList<Pessoa> p){
+        Scanner s = new Scanner(System.in);
+        int i = 1;
+        System.out.println("Escolha o cliente da conta: ");
+        for(Pessoa tit : p) {
+            System.out.println(i + ") " + tit.getCpf() + " - " + tit.getNome());
+            i++;
+        }
+        int index = s.nextInt();
+        return p.get(index-1);
+    }
+
+    public static Gerente escolherGerente(ArrayList<Gerente> g){
+        Scanner s = new Scanner(System.in);
+        int i = 1;
+        System.out.println("Escolha o gerente da conta: ");
+        for(Gerente ger : g){
+            System.out.println(i + ") " + ger.getCpf() + " - "+ ger.getNome());
+            i++;
+        }
+        int index = s.nextInt();
+        return g.get(index-1);
+    }
+
+    public static void menuMovimentacoes(ArrayList<Pessoa> p, ArrayList<Gerente> g, ArrayList<Conta> c){
+        Scanner s = new Scanner(System.in);
+
+        Conta conta1 = escolherConta(c);
+        System.out.println("O que deseja realizar? ");
+        System.out.println("1) Extrato");
+        System.out.println("2) Saque");
+        System.out.println("3) Deposito");
+        System.out.println("4) Transferencia");
+
+        int op = s.nextInt();
+
+        if (op == 1) conta1.extrato();
+        if (op == 2) conta1.sacar();
+        if (op == 3) conta1.depositar();
+        if (op == 4){
+            System.out.println("Qual a conta destino? ");
+            Conta conta2 = escolherConta(c);
+            conta1.transferir(conta2);
+        }
+    }
+
+    public static Conta escolherConta(ArrayList<Conta> c){
+        Scanner s = new Scanner(System.in);
+        int i = 1;
+        System.out.println("Escolha uma conta: ");
+        for (Conta cc : c){
+            System.out.println(i + ") " + cc.getNumero() + " - " + cc.getTitular().getNome());
+            i++;
+        }
+        int index = s.nextInt();
+        return c.get(index-1);
+    }
     
     public static void main(String[] args) {
+        ArrayList<Pessoa> p = new ArrayList<>();
+        ArrayList<Gerente> g = new ArrayList<>();
+        ArrayList<Conta> c = new ArrayList<>();
        
-        /* 
-        Pessoa p1 = new Pessoa("Maria", 18, 'F', "123.456.789-00");
-        Pessoa p2 = new Pessoa("João", 22, 'M', "234.567.890-00");
-
-        Conta c1 = new Conta("12345-6", p1);
-        Conta c2 = new Conta("23456-7", p2);
-
-        c1.extrato();
-        c2.extrato();
-
-        c1.sacar(150);
-        c1.transferir(100, c2);
-        c1.sacar(100);
-        c1.depositar(100);
-        c1.transferir(200, c2);
-
-        for(int i = 1; i <= 120; i += 1){
-            c1.chequeEspecial(0.5);
-
-            if(i%30 == 0) {
-                System.out.println("Saldo apos " +i+ " dias: " + c1.saldo);
-            }*/
-            Gerente g = new Gerente();
-            ContaCorrente c1 = new ContaCorrente(g);
-            Poupanca p1 = new Poupanca(g);
-
-            c1.extrato();
-            p1.extrato();
-
-            c1.sacar(200);
-            p1.depositar(50);
-
-            p1.transferir(30, c1);
-
-            c1.extrato();
-            p1.extrato();       
-        }
+        int op = menuInicial();
+        while (op != 0){
+            if(op == 1){
+                menuCadastro(p, g, c);
+            }
+            if(op == 2){
+                menuMovimentacoes(p, g, c);
+            }
+            op = menuInicial();
+       }
+    
+       System.out.println("Até mais!");
+    }
 }

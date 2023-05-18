@@ -16,6 +16,7 @@ public class Data {
 
         System.out.print("Digite o ano: ");
         this.ano = s.nextInt();
+        
     }
 
     public int getDia(){
@@ -32,7 +33,7 @@ public class Data {
         this.dia = dia;
     }
     
-    public Data(int d, int m, int a) {
+    /*public Data(int d, int m, int a) {
         this.dia = d;
         this.mes = m;
         this.ano = a;
@@ -51,5 +52,5 @@ public class Data {
             return true;
         }
         return false;
-    }
+    }*/
 }

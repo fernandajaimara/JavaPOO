@@ -8,28 +8,61 @@ public class Conta {
 
     /*Construtor da classe Conta */
 
-    public Conta (Gerente g){
+    public Conta (Pessoa t, Gerente g){
         Scanner s = new Scanner(System.in);
 
         System.out.print("Digite o numero da Conta: ");
         this.numero = s.nextLine();
 
-        System.out.println("Digite os dados do titular. ");
-        this.titular = new Pessoa();
+        this.setTitular(t);
 
         this.saldo = 0;
 
         System.out.println("Digite a data de criação da conta. ");
         this.criacao = new Data();
+
+        this.setGerente(g);
+        
     }
 
-    public Conta(String numero, Pessoa titular, Gerente ger, Data criacao){
+    /*public Conta(String numero, Pessoa titular, Gerente ger, Data criacao){
         this.numero = numero;
         this.titular = titular;
         this.gerente = ger;
         this.criacao = criacao;
         this.saldo = 0;
         System.out.println("Nova conta adicionada ao sistema.");
+    }*/
+
+    public String getNumero(){
+        return numero;
+    }
+    public double getSaldo(){
+        return saldo;
+    }
+    
+    public void setSaldo(double saldo){
+        this.saldo = saldo;
+    }
+
+    public void setTitular(Pessoa titular){
+        this.titular = titular;
+    }
+
+    public Pessoa getTitular(){
+        return titular;
+    }
+    
+    public void setNumero(String numero){
+        this.numero = numero;
+    }
+
+    public Pessoa getGerente(){
+        return gerente;
+    }
+    
+    public void setGerente(Gerente gerente){
+        this.gerente = gerente;
     }
 
     protected double disponivel(){
@@ -49,6 +82,13 @@ public class Conta {
         System.out.println("-------------------------------------------------");
     }
 
+    public void depositar(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Qual valor gostaria de depositar? ");
+        double valor = s.nextInt();
+        this.depositar(valor);
+    }
+
     public boolean sacar(double valor){
         if (valor <= this.disponivel()){
             this.saldo -= valor;
@@ -59,6 +99,13 @@ public class Conta {
             System.out.println("ERRO: Saque na conta " + this.numero + " nao realizado. Valor disponivel: " + this.disponivel());
             return false;
         }
+    }
+
+    public boolean sacar(){
+        Scanner s = new Scanner(System.in);
+        System.out.println("Qual valor gostaria de sacar? ");
+        double valor = s.nextDouble();
+        return this.sacar(valor);
     }
     
     public boolean transferir(double valor, Conta destino) {
@@ -71,5 +118,13 @@ public class Conta {
             System.out.println("ERRO: Não foi possível transferir " + valor + " da conta " + this.numero + " para a conta " + destino.numero + ". Valor disponivel: "+ this.disponivel());
             return false;
         }
+    }
+
+    public boolean transferir(Conta destino) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Qual valor gostaria de transferir? ");
+        double valor = s.nextInt();
+
+        return this.transferir(valor, destino);
     }
 }
