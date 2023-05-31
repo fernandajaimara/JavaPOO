@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Pessoa {
@@ -5,6 +8,18 @@ public class Pessoa {
     protected Data dataNascimento;
     protected char sexo;
     protected String cpf;
+
+    public Pessoa(BufferedReader b){
+        try{
+            this.nome = b.readLine();
+            this.cpf = b.readLine();
+            this.dataNascimento = new Data(b);
+            this.sexo = b.readLine().charAt(0);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public Pessoa(){
         Scanner s = new Scanner(System.in);
@@ -43,6 +58,13 @@ public class Pessoa {
 
     public void setSexo(char sexo){
         this.sexo = sexo;
+    }
+
+    public void salvarArq(BufferedWriter b)throws IOException{
+        b.write(this.nome + "\n");
+        b.write(this.cpf + "\n");
+        this.dataNascimento.salvarArq(b);
+        b.write(this.sexo + "\n");
     }
 
     /*public Pessoa(String nome, Data i, char sexo, String cpf) {        

@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Data {
@@ -5,6 +8,18 @@ public class Data {
     private int mes;
     private int ano;
 
+    public Data(BufferedReader b) {
+        try{
+            this.dia = Integer.parseInt(b.readLine());
+            this.mes = Integer.parseInt(b.readLine());
+            this.ano = Integer.parseInt(b.readLine());
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        
+    }
+    
     public Data() {
         Scanner s = new Scanner(System.in);
 
@@ -31,6 +46,12 @@ public class Data {
 
     public void setDia(int dia){
         this.dia = dia;
+    }
+
+    public void salvarArq(BufferedWriter b) throws IOException{
+        b.write(this.dia + "\n");
+        b.write(this.mes + "\n");
+        b.write(this.ano + "\n");
     }
     
     /*public Data(int d, int m, int a) {

@@ -1,7 +1,24 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 public class Gerente extends Pessoa{
     private String matricula;
     private String senha;
+
+    public Gerente(BufferedReader b){
+        super(b);
+        try{
+            this.senha = b.readLine();
+            this.matricula = b.readLine();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     public Gerente(){
         super();
@@ -50,4 +67,11 @@ public class Gerente extends Pessoa{
 
         return this.validarAcesso(senha);
     }*/
+    
+    public void salvarArq(BufferedWriter b)throws IOException{
+        super.salvarArq(b);
+        b.write(this.senha + "\n");
+        b.write(this.matricula + "\n");
+    }
 }
+

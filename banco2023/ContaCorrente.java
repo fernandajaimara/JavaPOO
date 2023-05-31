@@ -1,4 +1,8 @@
 //import java.util.Scanner;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+
 public class ContaCorrente extends Conta{
     private double limite;
 
@@ -7,11 +11,12 @@ public class ContaCorrente extends Conta{
         this.limite = 200;
     }
     
-    /*public ContaCorrente(String numero, Pessoa titular, Gerente ger, Data criacao){
-        super(numero, titular, ger, criacao);
-        this.limite = 200.0;
+    public ContaCorrente(String numero, Pessoa titular, double saldo, Data criacao, Gerente ger, double limite){
+        super(numero, titular, criacao, ger);
+        this.saldo = saldo;
+        this.limite = limite;
         System.out.println("Nova conta adicionada ao sistema.");
-    }*/
+    }
 
     public double getLimite(){
         return limite;
@@ -30,6 +35,12 @@ public class ContaCorrente extends Conta{
     public void extrato() {
         System.out.println("EXTRATO DA CONTA-CORRENTE");
         super.extrato();
+    }
+
+    public void salvarArq(BufferedWriter b)throws IOException{
+        b.write("1\n");
+        super.salvarArq(b);
+        b.write(this.limite + "\n");
     }
     
     /*public void chequeEspecial(double juro) {

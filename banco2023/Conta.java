@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.Scanner;
 public class Conta {
     protected String numero;
@@ -7,6 +10,19 @@ public class Conta {
     protected Data criacao;
 
     /*Construtor da classe Conta */
+
+    public Conta(BufferedReader b){
+        try{
+            this.numero = b.readLine();
+            this.titular = new Pessoa(b);
+            this.gerente = new Gerente(b);
+            this.saldo = Double.parseDouble(b.readLine());
+            this.criacao = new Data(b);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    } 
 
     public Conta (Pessoa t, Gerente g){
         Scanner s = new Scanner(System.in);
@@ -25,14 +41,13 @@ public class Conta {
         
     }
 
-    /*public Conta(String numero, Pessoa titular, Gerente ger, Data criacao){
+    public Conta(String numero, Pessoa titular, Data criacao, Gerente ger){
         this.numero = numero;
         this.titular = titular;
         this.gerente = ger;
         this.criacao = criacao;
-        this.saldo = 0;
         System.out.println("Nova conta adicionada ao sistema.");
-    }*/
+    }
 
     public String getNumero(){
         return numero;
@@ -50,7 +65,7 @@ public class Conta {
     }
 
     public Pessoa getTitular(){
-        return titular;
+        return this.titular;
     }
     
     public void setNumero(String numero){
@@ -126,5 +141,13 @@ public class Conta {
         double valor = s.nextInt();
 
         return this.transferir(valor, destino);
+    }
+
+    public void salvarArq(BufferedWriter b)throws IOException{
+        b.write(this.numero + "\n");
+        b.write(this.titular.getCpf() + "\n");
+        b.write(this.saldo + "\n");
+        this.criacao.salvarArq(b);
+        b.write(this.gerente.getCpf());
     }
 }
